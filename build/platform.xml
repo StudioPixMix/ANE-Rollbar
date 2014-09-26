@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<platform xmlns="http://ns.adobe.com/air/extension/15.0">
+    <linkerOptions>
+        <option>-framework Foundation</option>
+        <option>-framework CrashReporter</option>
+        <option>-framework Rollbar</option>
+    </linkerOptions>
+    <packagedDependencies>
+        <packagedDependency>CrashReporter.framework</packagedDependency>
+        <packagedDependency>Rollbar.framework</packagedDependency>
+    </packagedDependencies>
+</platform>

@@ -1,0 +1,32 @@
+<extension xmlns="http://ns.adobe.com/air/extension/15.0">
+  <id>com.studiopixmix.Rollbar</id>
+  <versionNumber>1</versionNumber>
+  <platforms>
+    <platform name="iPhone-ARM">
+        <applicationDeployment>
+            <nativeLibrary>libRollbar.a</nativeLibrary>
+            <initializer>RollbarExtensionInitializer</initializer>
+        </applicationDeployment>
+    </platform>
+
+    <platform name="Android-ARM"> 
+        <applicationDeployment> 
+            <nativeLibrary>Rollbar.jar</nativeLibrary>
+            <initializer>com.studiopixmix.RollbarExtension</initializer>
+			<finalizer>com.studiopixmix.RollbarExtension</finalizer>
+        </applicationDeployment> 
+    </platform> 
+    
+    <platform name="Android-x86"> 
+        <applicationDeployment> 
+            <nativeLibrary>Rollbar.jar</nativeLibrary>
+            <initializer>com.studiopixmix.RollbarExtension</initializer>
+			<finalizer>com.studiopixmix.RollbarExtension</finalizer>
+        </applicationDeployment> 
+    </platform> 
+    
+    <platform name="default"> 
+        <applicationDeployment/> 
+    </platform> 
+  </platforms>
+</extension>
