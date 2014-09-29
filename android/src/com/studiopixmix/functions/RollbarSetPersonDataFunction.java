@@ -24,7 +24,6 @@ public class RollbarSetPersonDataFunction implements FREFunction {
 			RollbarExtension.log("Error when setting people data : " + e);
 		}
 		
-		
 		return null;
 	}
 

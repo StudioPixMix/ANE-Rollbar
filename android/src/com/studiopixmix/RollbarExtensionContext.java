@@ -5,6 +5,7 @@ import java.util.Map;
 import com.adobe.fre.FREContext;
 import com.adobe.fre.FREFunction;
 import com.studiopixmix.functions.RollbarInitFunction;
+import com.studiopixmix.functions.RollbarReportErrorFunction;
 import com.studiopixmix.functions.RollbarSetPersonDataFunction;
 
 
@@ -29,6 +30,7 @@ public class RollbarExtensionContext extends FREContext {
 		
 		functions.put("rollbarANE_init", new RollbarInitFunction());
 		functions.put("rollbarANE_setPersonData", new RollbarSetPersonDataFunction());
+		functions.put("rollbarANE_reportError", new RollbarReportErrorFunction());
 		
 		RollbarExtension.log("Functions declared.");
 		
