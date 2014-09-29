@@ -103,6 +103,18 @@ package com.studiopixmix {
 		}
 		
 		/**
+		 * Reports the given error message to Rollbar. When native Rollbar SDK is available, native SDK is used, otherwise, the method falls
+		 * back to using the AS3 SDK.
+		 */
+		public static function reportError(message:String, data:String = null):void {
+			if(!isSupported) 
+				RollbarAS.handleError(new Error(message), data);
+			else 
+				extensionContext.call("rollbarANE_reportError", message, data ? data.toString() : null);
+			log("Error reported : " + message + " [data:" + data + "]");
+		}
+		
+		/**
 		 * Disposes the Native Extension context.
 		 */
 		public static function dispose():void {
