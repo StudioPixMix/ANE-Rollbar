@@ -37,8 +37,11 @@ FREResult FREGetObject(FREObject object, NSString** value) {
 
 // PUBLIC METHODS
 
+/**
+ * Method called to initialize the Rollbar iOS SDK.
+ */
 DEFINE_ANE_FUNCTION(rollbarANE_init) {
-    logAndDispatch(@"rollbarANE_init", @"Entering...");
+    logAndDispatch(@"rollbarANE_init", @"Initializing Rollbar...");
 
     FREResult result;
 	NSString* accessToken;
@@ -49,10 +52,41 @@ DEFINE_ANE_FUNCTION(rollbarANE_init) {
 	if ((result = FREGetObject(argv[1], &configEnvironment)) != FRE_OK)
 		return (FREObject)result;
 
+    logAndDispatch(@"rollbarANE_init", [NSString stringWithFormat:@"%@%@%@%@%@", @"Data: [accessToken:", accessToken, @", environ:", configEnvironment, @"]."]);
+    
 	RollbarConfiguration *config = [RollbarConfiguration configuration];
 	config.environment = configEnvironment;
 
     [Rollbar initWithAccessToken:accessToken configuration:config];
+    
+    logAndDispatch(@"rollbarANE_init", @"Rollbar successfuly initialized.");
+    return FRE_OK;
+}
+
+/**
+ * Method called to set the person data for Rollbar logging.
+ */
+DEFINE_ANE_FUNCTION(rollbarANE_setPersonData) {
+    logAndDispatch(@"rollbarANE_setPersonData", @"Setting person data...");
+
+    FREResult result;
+	NSString* uid;
+	NSString* username;
+	NSString* email;
+    
+	if ((result = FREGetObject(argv[0], &uid)) != FRE_OK)
+		return (FREObject)result;
+	if ((result = FREGetObject(argv[1], &username)) != FRE_OK)
+		return (FREObject)result;
+	if ((result = FREGetObject(argv[2], &email)) != FRE_OK)
+		return (FREObject)result;
+    
+    logAndDispatch(@"rollbarANE_setPersonData", [NSString stringWithFormat:@"%@%@%@%@%@%@%@", @"Person data: [id:", uid, @", username:", username, @", email: ", email, @"]."]);
+    
+    RollbarConfiguration *config = [Rollbar currentConfiguration];
+    [config setPersonId:uid username:username email:email];
+    
+    logAndDispatch(@"rollbarANE_setPersonData", @"Person data successfuly set.");
     return FRE_OK;
 }
 
