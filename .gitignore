@@ -41,3 +41,6 @@
 /actionscript/.project
 /actionscript/.settings/org.eclipse.core.resources.prefs
 /actionscript/bin
+/android/bin
+/android/.classpath
+/android/.project
