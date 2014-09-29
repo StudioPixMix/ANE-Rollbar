@@ -52,6 +52,8 @@ DEFINE_ANE_FUNCTION(rollbarANE_init) {
 	if ((result = FREGetObject(argv[1], &configEnvironment)) != FRE_OK)
 		return (FREObject)result;
 
+    logAndDispatch(@"rollbarANE_init", [NSString stringWithFormat:@"%@%@%@%@%@", @"Data: [accessToken:", accessToken, @", environ:", configEnvironment, @"]."]);
+    
 	RollbarConfiguration *config = [RollbarConfiguration configuration];
 	config.environment = configEnvironment;
 
@@ -78,6 +80,8 @@ DEFINE_ANE_FUNCTION(rollbarANE_setPersonData) {
 		return (FREObject)result;
 	if ((result = FREGetObject(argv[2], &email)) != FRE_OK)
 		return (FREObject)result;
+    
+    logAndDispatch(@"rollbarANE_setPersonData", [NSString stringWithFormat:@"%@%@%@%@%@%@%@", @"Person data: [id:", uid, @", username:", username, @", email: ", email, @"]."]);
     
     RollbarConfiguration *config = [Rollbar currentConfiguration];
     [config setPersonId:uid username:username email:email];
