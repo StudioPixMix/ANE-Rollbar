@@ -90,6 +90,25 @@ DEFINE_ANE_FUNCTION(rollbarANE_setPersonData) {
     return FRE_OK;
 }
 
+DEFINE_ANE_FUNCTION(rollbarANE_reportError) {
+    logAndDispatch(@"rollbarANE_reportError", @"Trying to report an error...");
+    FREResult result;
+	NSString* message;
+	NSString* data;
+    
+	if ((result = FREGetObject(argv[0], &message)) != FRE_OK)
+		return (FREObject)result;
+	if ((result = FREGetObject(argv[1], &data)) != FRE_OK)
+		return (FREObject)result;
+
+    logAndDispatch(@"rollbarANE_reportError", [NSString stringWithFormat:@"Reporting error %@: %@...", message, data]);
+    
+    [Rollbar criticalWithMessage:message data:[NSDictionary dictionaryWithObject:data forKey:@"data"]];
+    
+    logAndDispatch(@"rollbarANE_reportError", @"Error reported");
+    return FRE_OK;
+}
+
 // CONTEXT & EXTENSION INITIALIZER/FINALIZER
 
 /**
@@ -101,7 +120,8 @@ void RollbarExtensionContextInitializer(void* extData, const uint8_t* ctxType, F
     
     static FRENamedFunction functionMap[] = {
         MAP_FUNCTION(rollbarANE_init, NULL),
-        MAP_FUNCTION(rollbarANE_setPersonData, NULL)
+        MAP_FUNCTION(rollbarANE_setPersonData, NULL),
+        MAP_FUNCTION(rollbarANE_reportError, NULL)
     };
     
 	*numFunctionsToSet = sizeof( functionMap ) / sizeof( FRENamedFunction );
