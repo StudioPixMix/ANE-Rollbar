@@ -100,7 +100,8 @@ void RollbarExtensionContextInitializer(void* extData, const uint8_t* ctxType, F
     logAndDispatch(@"RollbarExtensionContextInitializer", @"Declaring functions...");
     
     static FRENamedFunction functionMap[] = {
-        MAP_FUNCTION(rollbarANE_init, NULL)
+        MAP_FUNCTION(rollbarANE_init, NULL),
+        MAP_FUNCTION(rollbarANE_setPersonData, NULL)
     };
     
 	*numFunctionsToSet = sizeof( functionMap ) / sizeof( FRENamedFunction );
