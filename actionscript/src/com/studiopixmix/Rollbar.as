@@ -15,6 +15,11 @@ package com.studiopixmix {
 		private static const EVENT_LOG:String = "Event.Log";
 		
 		// PROPERTIES :
+		/** The logging function you want to use. Defaults to trace. */
+		public static var logger:Function = trace;
+		/** The prefix appended to every log message. Defaults to "[Rollbar]". */
+		public static var logPrefix:String = "[Rollbar]";
+		
 		/** The Native Extension context. */
 		private static var extensionContext:ExtensionContext;
 		
@@ -32,17 +37,12 @@ package com.studiopixmix {
 		}
 		
 		
-		// CONSTRUCTOR :
-		public function Rollbar() {
-		}
-		
-		
 		////////////////
 		// PUBLIC API //
 		////////////////
 		
 		/**
-		 * Asks the Native Extension to return the result of the addition of both int given.
+		 * Initializes Rollbar if it is supported on the current platform.
 		 */
 		public static function init(accessToken:String, environment:String):void {
 			if (!isSupported) {
@@ -70,10 +70,15 @@ package com.studiopixmix {
 		 * Disposes the Native Extension context.
 		 */
 		public function dispose():void {
-			log("Disposing context ...");
-			extensionContext.dispose();
-			extensionContext = null;
-			log("Context disposed.");
+			if(extensionContext) {
+				log("Disposing context ...");
+				extensionContext.removeEventListener(StatusEvent.STATUS, onStatusEvent);
+				extensionContext.dispose();
+				extensionContext = null;
+				log("Context disposed.");
+			}
+			else
+				log("Extension already disposed.");
 		}
 		
 		
@@ -92,10 +97,15 @@ package com.studiopixmix {
 		}
 		
 		/**
-		 * Logs the given message.
+		 * Outputs the given message(s) using the provided logger function, or using trace.
 		 */
-		private static function log(message:String):void {
-			trace("[Rollbar] " + message);
+		private static function log(message:String, ... additionnalMessages):void {
+			if(logger == null) return;
+			
+			if(!additionnalMessages)
+				additionnalMessages = [];
+			
+			logger((logPrefix && logPrefix.length > 0 ? logPrefix + " " : "") + message + " " + additionnalMessages.join(" "));
 		}
 	}
 }

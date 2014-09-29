@@ -86,6 +86,21 @@
 		<echo message="Done."/>
 	</target>
 	
+	<!-- ASDoc -->
+	<target name="doc" description="Generate ASDoc">
+		<echo message="Generating asdoc ..."/>
+		<delete dir="../doc"/>
+		<exec executable="${flex.sdk}/bin/asdoc${bin.ext}" failonerror="true">
+            <arg line='-load-config="${flex.sdk}/frameworks/airmobile-config.xml"'/>
+			<arg line="-main-title '${name} ANE API Documentation'" />
+            <arg line="-window-title '${name} ANE API Documentation'" />
+            <arg line="-source-path ../actionscript/src" />
+			<arg line="-doc-sources ../actionscript/src" />
+			<arg line="-output ../doc" />
+        </exec>
+		<echo message="Done."/>
+	</target>
+	
     <!-- Package -->
     <target name="package" description="Create the extension package">
 		<echo message="Building ANE file"/>
@@ -109,11 +124,6 @@
 		<echo message="Exporting the compiled ANE to ${export.dir} ..."/>
 		<copy file="../bin/${name}.ane" todir="${export.dir}" overwrite="true"/>
 		<echo message="Done."/>
-	</target>
-	
-	<!-- TEMP -->
-	<target name="copy" description="TEMP : copies the package ANE file to the sample app project">
-		<copy file="../bin/${name}.ane" todir="../TestANESampleApp/anes"/>
 	</target>
     
 </project>

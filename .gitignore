@@ -35,3 +35,9 @@
 ._Rollbar
 ._Rollbar.h
 ._RollbarConfiguration.h
+/build/build.config
+/actionscript/.actionScriptProperties
+/actionscript/.flexLibProperties
+/actionscript/.project
+/actionscript/.settings/org.eclipse.core.resources.prefs
+/actionscript/bin
