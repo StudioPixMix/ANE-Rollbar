@@ -25,6 +25,10 @@ package com.studiopixmix {
 		/** The Native Extension context. */
 		private static var extensionContext:ExtensionContext;
 		
+		private static var _isInitialized:Boolean;
+		/** Whether the extension have been initialized. */
+		public static function get isInitialized():Boolean { return _isInitialized; }
+		
 		/** Whether the _isSupported var has already been initialized. */
 		private static var _isSupportedInitialized:Boolean;
 		private static var _isSupported:Boolean;
@@ -52,6 +56,12 @@ package com.studiopixmix {
 		 */
 		public static function init(stage:Stage, accessToken:String, environment:String):void {
 			
+			// Init only once :
+			if(isInitialized) {
+				log("Rollbar is already initialized. Aborting.");
+				return;
+			}
+			
 			// AS3 SDK :
 			log("Initializing AS3 SDK ...");
 			RollbarAS.init(stage, accessToken, environment);
@@ -74,7 +84,7 @@ package com.studiopixmix {
 			extensionContext.call("rollbarANE_init", accessToken, environment);
 			log("Rollbar succesfully initialized.");
 			
-			return;
+			_isInitialized = true;
 		}
 		
 		/**

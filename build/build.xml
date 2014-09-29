@@ -126,6 +126,7 @@
             <arg line="-platform Android-x86 -C android/ ."/>
             <arg line="-platform default -C default/ ."/>
         </exec>
+		<echo message="Done."/>
     </target>
 	
 	<!-- Export -->

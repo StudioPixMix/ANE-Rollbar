@@ -5,6 +5,7 @@ Air Native Extension for Rollbar on Android (ARM and x86) and iOS.
 
  - Rollbar Android SDK version : 0.0.6
  - Rollbar iOS SDK version : 0.1.2
+ - Rollbar AS3 SDK version : forked from 0.9.2
 
 Documentation
 ----------
