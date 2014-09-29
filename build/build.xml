@@ -45,8 +45,17 @@
             </classpath>
         </javac>
 		
-        <jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
-        <delete dir="../bin/android/temp"/>
+		<mkdir dir="../bin/android/temp/zip" />
+		<unzip dest="../bin/android/temp/zip" src="../android/libs/rollbar.jar" />
+		
+		<copy todir="../bin/android/temp/classes/com">
+			<fileset dir="../bin/android/temp/zip/com" />
+		</copy>
+		
+		<jar basedir="../bin/android/temp/classes" destfile="../bin/android/${name}.jar"/>
+		<delete dir="../bin/android/temp"/>
+		
+		<echo message="Done."/>
 		
     </target>
     

@@ -1,4 +1,6 @@
 package com.studiopixmix {
+	
+	import flash.display.Stage;
 	import flash.events.StatusEvent;
 	import flash.external.ExtensionContext;
 	import flash.system.Capabilities;
@@ -43,14 +45,24 @@ package com.studiopixmix {
 		
 		/**
 		 * Initializes Rollbar if it is supported on the current platform.
+		 * 
+		 * @param stage			A reference to the flash native stage
+		 * @param accessToken	Rollbar access token to use
+		 * @param environment	The environment to use (free form)
 		 */
-		public static function init(accessToken:String, environment:String):void {
+		public static function init(stage:Stage, accessToken:String, environment:String):void {
+			
+			// AS3 SDK :
+			log("Initializing AS3 SDK ...");
+			RollbarAS.init(stage, accessToken, environment);
+			
+			// Native SDK :
 			if (!isSupported) {
 				log("Platform is not supported, aborting...");
 				return;
 			}
-		
-			log("Creating context ...");
+			
+			log("Initializing native SDK ...");
 			extensionContext = ExtensionContext.createExtensionContext(EXTENSION_ID, null);
 			if(extensionContext != null)
 				extensionContext.addEventListener(StatusEvent.STATUS, onStatusEvent);
@@ -58,18 +70,32 @@ package com.studiopixmix {
 				log("Failed to create context ! Aborting...");
 				return;
 			}
-			log("Context : " + extensionContext);
-
-			log("Initializing Rollbar...");
+			
 			extensionContext.call("rollbarANE_init", accessToken, environment);
+			log("Rollbar succesfully initialized.");
 			
 			return;
 		}
 		
 		/**
+		 * Registers the given person data as the current user for Rollbar reporting.
+		 */
+		public static function setPersonData(id:String, username:String, email:String):void {
+			if(!isSupported)  
+				return;
+			
+			RollbarAS.setPersonData(id, username, email);
+			
+			if(extensionContext) 
+				extensionContext.call("rollbarANE_setPersonData", id, username, email);
+			
+			log("Person data set to [id:" + id + ", username:" + username + ", email:" + email + "].");
+		}
+		
+		/**
 		 * Disposes the Native Extension context.
 		 */
-		public function dispose():void {
+		public static function dispose():void {
 			if(extensionContext) {
 				log("Disposing context ...");
 				extensionContext.removeEventListener(StatusEvent.STATUS, onStatusEvent);
