@@ -98,8 +98,14 @@ DEFINE_ANE_FUNCTION(rollbarANE_reportError) {
     
 	if ((result = FREGetObject(argv[0], &message)) != FRE_OK)
 		return (FREObject)result;
-	if ((result = FREGetObject(argv[1], &data)) != FRE_OK)
-		return (FREObject)result;
+	if ((result = FREGetObject(argv[1], &data)) != FRE_OK)  {
+        logAndDispatch(@"rollbarANE_reportError", [NSString stringWithFormat:@"Reporting error %@...", message]);
+        
+        [Rollbar criticalWithMessage:message];
+        
+        logAndDispatch(@"rollbarANE_reportError", @"Error reported");
+        return FRE_OK;
+    }
 
     logAndDispatch(@"rollbarANE_reportError", [NSString stringWithFormat:@"Reporting error %@: %@...", message, data]);
     
