@@ -10,6 +10,20 @@ public class RollbarInitFunction implements FREFunction {
 
 	@Override
 	public FREObject call(FREContext context, FREObject[] args) {
+		
+		
+		///////////////////////////////////////////////////////////////
+		// Trying to fix the CalledFromWrongThread exception
+		// see: http://stackoverflow.com/questions/10426120/android-got-calledfromwrongthreadexception-in-onpostexecute-how-could-it-be
+		try {
+			Class.forName("android.os.AsyncTask");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		//
+		///////////////////////////////////////////////////////////////
+		
+		
 		try {
 			String token = args[0].getAsString();
 			String env = args[1].getAsString();
