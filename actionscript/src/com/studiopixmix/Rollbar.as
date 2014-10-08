@@ -50,11 +50,12 @@ package com.studiopixmix {
 		/**
 		 * Initializes Rollbar if it is supported on the current platform.
 		 * 
-		 * @param stage			A reference to the flash native stage
-		 * @param accessToken	Rollbar access token to use
-		 * @param environment	The environment to use (free form)
+		 * @param stage						A reference to the flash native stage
+		 * @param accessToken				Rollbar access token to use
+		 * @param environment				The environment to use (free form)
+		 * @param includeLogcatOnAndroid	Whether to include logcat in reports on Android (requires android.permission.READ_LOGS permission)
 		 */
-		public static function init(stage:Stage, accessToken:String, environment:String):void {
+		public static function init(stage:Stage, accessToken:String, environment:String, includeLogcatOnAndroid:Boolean):void {
 			
 			// Init only once :
 			if(isInitialized) {
@@ -81,7 +82,7 @@ package com.studiopixmix {
 				return;
 			}
 			
-			extensionContext.call("rollbarANE_init", accessToken, environment);
+			extensionContext.call("rollbarANE_init", accessToken, environment, includeLogcatOnAndroid);
 			log("Rollbar succesfully initialized.");
 			
 			_isInitialized = true;

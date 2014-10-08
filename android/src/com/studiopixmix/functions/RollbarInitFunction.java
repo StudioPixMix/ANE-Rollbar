@@ -27,9 +27,11 @@ public class RollbarInitFunction implements FREFunction {
 		try {
 			String token = args[0].getAsString();
 			String env = args[1].getAsString();
+			Boolean includeLogcat = args[2].getAsBool();
 			
-			RollbarExtension.log("Initializing Rollbar with token \"" + token + "\" (environment : " + env + ") ...");
+			RollbarExtension.log("Initializing Rollbar with token \"" + token + "\" (environment : " + env + ", include Logcat : " + includeLogcat + ") ...");
 			Rollbar.init(context.getActivity(), token, env);
+			Rollbar.setIncludeLogcat(includeLogcat);
 			RollbarExtension.log("Rollbar initialized succesfully ? " + Rollbar.isInit());
 		}
 		catch (Exception e) {
