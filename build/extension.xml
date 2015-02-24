@@ -1,4 +1,4 @@
-<extension xmlns="http://ns.adobe.com/air/extension/15.0">
+<extension xmlns="http://ns.adobe.com/air/extension/16.0">
   <id>com.studiopixmix.Rollbar</id>
   <versionNumber>1</versionNumber>
   <platforms>
