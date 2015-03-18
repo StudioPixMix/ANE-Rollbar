@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<platform xmlns="http://ns.adobe.com/air/extension/16.0">
+    <packagedDependencies>
+		<packagedDependency>rollbar-android-0.1.2.jar</packagedDependency>
+    </packagedDependencies>
+</platform>
