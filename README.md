@@ -4,7 +4,7 @@ ANE-Rollbar
 Air Native Extension for Rollbar on Android (ARM and x86) and iOS.
 
  - Rollbar Android SDK version : 0.1.2
- - Rollbar iOS SDK version : 0.1.2
+ - Rollbar iOS SDK version : 0.1.3
  - Rollbar AS3 SDK version : forked from 0.9.2
 
 Documentation
