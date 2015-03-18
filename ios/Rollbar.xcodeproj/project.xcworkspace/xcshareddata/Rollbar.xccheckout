@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9AEF5941-1E3D-4101-B84C-BC0A1805A154</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Rollbar</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D67C3C316BCE064A6B6C36FC11810E5CB982EC98</key>
+		<string>https://github.com/StudioPixMix/ANE-Rollbar.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ios/Rollbar.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D67C3C316BCE064A6B6C36FC11810E5CB982EC98</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/StudioPixMix/ANE-Rollbar.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D67C3C316BCE064A6B6C36FC11810E5CB982EC98</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D67C3C316BCE064A6B6C36FC11810E5CB982EC98</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ANE-Rollbar</string>
+		</dict>
+	</array>
+</dict>
+</plist>

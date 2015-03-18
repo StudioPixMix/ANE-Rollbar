@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		3460891318C0CEC200AC440B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3460891218C0CEC200AC440B /* Foundation.framework */; };
 		4893852819D41A92000D6859 /* Rollbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4893852719D41A92000D6859 /* Rollbar.m */; };
-		4893852C19D41E58000D6859 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4893852A19D41E58000D6859 /* CrashReporter.framework */; };
-		4893852D19D41E58000D6859 /* Rollbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4893852B19D41E58000D6859 /* Rollbar.framework */; };
+		6DA3BD171AB99BA90058393F /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA3BD151AB99BA90058393F /* CrashReporter.framework */; };
+		6DA3BD181AB99BA90058393F /* Rollbar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA3BD161AB99BA90058393F /* Rollbar.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,8 +31,8 @@
 		4893852519D41A92000D6859 /* FlashRuntimeExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlashRuntimeExtensions.h; sourceTree = "<group>"; };
 		4893852619D41A92000D6859 /* Rollbar-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Rollbar-Prefix.pch"; sourceTree = "<group>"; };
 		4893852719D41A92000D6859 /* Rollbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rollbar.m; sourceTree = "<group>"; };
-		4893852A19D41E58000D6859 /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CrashReporter.framework; sourceTree = "<group>"; };
-		4893852B19D41E58000D6859 /* Rollbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Rollbar.framework; sourceTree = "<group>"; };
+		6DA3BD151AB99BA90058393F /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = Rollbar/CrashReporter.framework; sourceTree = "<group>"; };
+		6DA3BD161AB99BA90058393F /* Rollbar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rollbar.framework; path = Rollbar/Rollbar.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,8 +41,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3460891318C0CEC200AC440B /* Foundation.framework in Frameworks */,
-				4893852D19D41E58000D6859 /* Rollbar.framework in Frameworks */,
-				4893852C19D41E58000D6859 /* CrashReporter.framework in Frameworks */,
+				6DA3BD181AB99BA90058393F /* Rollbar.framework in Frameworks */,
+				6DA3BD171AB99BA90058393F /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +52,8 @@
 		3460890618C0CEC200AC440B = {
 			isa = PBXGroup;
 			children = (
+				6DA3BD151AB99BA90058393F /* CrashReporter.framework */,
+				6DA3BD161AB99BA90058393F /* Rollbar.framework */,
 				4893852419D41A92000D6859 /* Rollbar */,
 				3460891118C0CEC200AC440B /* Frameworks */,
 				3460891018C0CEC200AC440B /* Products */,
@@ -77,21 +79,11 @@
 		4893852419D41A92000D6859 /* Rollbar */ = {
 			isa = PBXGroup;
 			children = (
-				4893852919D41E58000D6859 /* SDK */,
 				4893852519D41A92000D6859 /* FlashRuntimeExtensions.h */,
 				4893852619D41A92000D6859 /* Rollbar-Prefix.pch */,
 				4893852719D41A92000D6859 /* Rollbar.m */,
 			);
 			path = Rollbar;
-			sourceTree = "<group>";
-		};
-		4893852919D41E58000D6859 /* SDK */ = {
-			isa = PBXGroup;
-			children = (
-				4893852A19D41E58000D6859 /* CrashReporter.framework */,
-				4893852B19D41E58000D6859 /* Rollbar.framework */,
-			);
-			path = SDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,7 +217,7 @@
 				DSTROOT = /tmp/Rollbar.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Rollbar/SDK",
+					"$(PROJECT_DIR)/Rollbar",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rollbar/Rollbar-Prefix.pch";
@@ -244,11 +236,12 @@
 				DSTROOT = /tmp/Rollbar.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Rollbar/SDK",
+					"$(PROJECT_DIR)/Rollbar",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Rollbar/Rollbar-Prefix.pch";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = Rollbar;
 				SKIP_INSTALL = YES;
